@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>checkbox-radio-ui</title>
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/checkboxRadioUI.css">
+</head>
+<body>
+    
+    <div class="row">
+        <div class="cell cell-4">
+            <label for="">Checkbox</label>
+            <input class="chekcboxRadiobUI" checked type="checkbox" name="" id="">
+        </div>
+        <div class="cell cell-4">
+            <label for="">Checkbox</label>
+            <input class="chekcboxRadiobUI" type="checkbox" name="" id="">
+        </div>
+        <div class="cell cell-4">
+            <label for="">Checkbox</label>
+            <input class="chekcboxRadiobUI" type="checkbox" name="" id="">
+        </div>
+        <div class="cell cell-4">
+            <label for="">Checkbox</label>
+            <input class="chekcboxRadiobUI" disabled type="checkbox" name="" id="">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="cell cell-4">
+            <label for="">Radio</label>
+            <input class="chekcboxRadiobUI" disabled type="radio" name="radio">
+        </div>
+        <div class="cell cell-4">
+            <label for="">Radio</label>
+            <input class="chekcboxRadiobUI" type="radio" name="radio">
+        </div>
+        <div class="cell cell-4">
+            <label for="">Radio</label>
+            <input class="chekcboxRadiobUI" checked type="radio" name="radio">
+        </div>
+        <div class="cell cell-4">
+            <label for="">Radio</label>
+            <input class="chekcboxRadiobUI" checked type="radio" name="radio">
+        </div>
+    </div>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="javascripts/jquery.checkboxRadioUi.js"></script>
+
+    <script type="text/javascript">
+        $("input[type='checkbox']").checkboxRadioUI({
+            "label": true
+        });
+
+        $("input[type='radio']").checkboxRadioUI({
+            "label": true
+        });
+    </script>
+</body>
+</html>

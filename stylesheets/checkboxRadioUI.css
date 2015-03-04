@@ -1,0 +1,32 @@
+/**
+ * CSS style for checkbox
+ * For customization you need add custom style to class:
+ * checkboxUI, radioUI - simple state
+ * checkboxUI_checked, radioUI_checked - checked state
+ * checkboxUI_disabled, radioUI_disabled - disabled state
+ **/
+.checkboxUI{
+    width: 23px;
+    height: 23px;
+    background: url('../images/checkbox-radio.png') no-repeat 0 0;
+}
+.checkboxUI_checked{
+    background-position: -100px 0;
+}
+
+/**
+ * CSS style for radio
+ **/
+.radioUI{
+    width: 23px;
+    height: 23px;
+    background: url('../images/checkbox-radio.png') no-repeat 0 -50px;
+}
+.radioUI_checked{
+    background-position: -100px -50px;
+}
+.checkboxUI_disabled, .radioUI_disabled{
+    opacity: .5;
+    cursor: not-allowed;
+}
+
