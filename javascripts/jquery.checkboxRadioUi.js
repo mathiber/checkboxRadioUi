@@ -135,6 +135,7 @@
         // method for event click on element
         function _eventClick() {
             ui.wrap.on(ui.eventTypes.mousedown, function() {
+                if (e.which !== 1 && ticker.eventTypes.mousedown === "mousedown") return;
                 _changeControl();
             });
         };
@@ -142,6 +143,7 @@
         var _eventClickLabel = function() {
             ui.$label = ui.wrap.siblings("label");
             ui.$label.on(ui.eventTypes.mousedown, function() {
+                if (e.which !== 1 && ticker.eventTypes.mousedown === "mousedown") return;
                 _changeControl();
             });
         };
