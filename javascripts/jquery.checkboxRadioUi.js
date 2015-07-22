@@ -142,6 +142,9 @@
 
         var _eventClickLabel = function() {
             ui.$label = ui.wrap.siblings("label");
+            ui.$label.on("click", function(e) {
+				e.preventDefault();
+			});
             ui.$label.on(ui.eventTypes.mousedown, function() {
                 if (e.which !== 1 && ticker.eventTypes.mousedown === "mousedown") return;
                 _changeControl();
@@ -151,9 +154,14 @@
         function _changeControl() {
             // ui.wrap toggle checked cls for checkbox
             if(ui.type == "CHECKBOX") {
-                ui.$el.prop("checked", true);
-                ui.wrap.toggleClass(ui.wrapCheckboxCls + ui.checkedClsuffix);
-            }
+				if( ui.$el.is(":checked") ) {
+					ui.$el.prop("checked", false);
+					ui.wrap.removeClass(ui.wrapCheckboxCls + ui.checkedClsuffix);
+				} else {
+					ui.$el.prop("checked", true);
+					ui.wrap.addClass(ui.wrapCheckboxCls + ui.checkedClsuffix);
+				}
+			}
             // ui.wrap toggle checked cls for radio
             if(ui.type == "RADIO") {
                 ui.$group.prop("checked", false);
