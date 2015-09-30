@@ -1,0 +1,16 @@
+{
+  "name": "checkboxRadioUi",
+  "version": "0.1.0",
+  "homepage": "https://github.com/likeclever1/checkboxRadioUi",
+  "authors": [
+    "Yuriy Berezovskiy"
+  ],
+  "main": "javascripts/jquery.checkboxRadioUi.js",
+  "dependencies": {
+    "jquery": "^1.11.3"
+  },
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT"
+}
