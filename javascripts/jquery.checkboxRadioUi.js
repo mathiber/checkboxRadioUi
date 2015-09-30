@@ -75,7 +75,7 @@
                     ui.type = "CHECKBOX";
                 } else if(ui.el.type.toUpperCase() == "RADIO") {
                     ui.type = "RADIO";
-                    ui.$group = $("input[name='" + ui.$el.prop("name") + "']");
+                    ui.$group = $("input[name='" + ui.$el.prop("name") + "']").not(ui.el);
                 }
             }
             if(ui.type) {
@@ -134,19 +134,29 @@
         
         // method for event click on element
         function _eventClick() {
-            ui.wrap.on(ui.eventTypes.mousedown, function() {
-                if (e.which !== 1 && ticker.eventTypes.mousedown === "mousedown") return;
+            ui.wrap.on(ui.eventTypes.mousedown, function(e) {
                 _changeControl();
+            });
+            ui.$el.on('change', function(){
+                if (ui.type == 'CHECKBOX') {
+                    if (ui.$el.is(':checked')) {
+                        ui.wrap.addClass(ui.wrapCheckboxCls + ui.checkedClsuffix);
+                    } else {
+                        ui.wrap.removeClass(ui.wrapCheckboxCls + ui.checkedClsuffix);
+                    }
+                } else if (ui.type == 'RADIO' && ui.$el.is(':checked')) {
+                    ui.$group.parent().removeClass(ui.wrapRadioCls + ui.checkedClsuffix);
+                    ui.wrap.addClass(ui.wrapRadioCls + ui.checkedClsuffix);
+                }
+                if (this === ui.el && ui.settings.onChange) {
+                    ui.settings.onChange(ui.el);
+                }
             });
         };
 
         var _eventClickLabel = function() {
             ui.$label = ui.wrap.siblings("label");
-            ui.$label.on("click", function(e) {
-				e.preventDefault();
-			});
-            ui.$label.on(ui.eventTypes.mousedown, function() {
-                if (e.which !== 1 && ticker.eventTypes.mousedown === "mousedown") return;
+            ui.$label.on(ui.eventTypes.mousedown, function(e) {
                 _changeControl();
             });
         };
@@ -154,20 +164,12 @@
         function _changeControl() {
             // ui.wrap toggle checked cls for checkbox
             if(ui.type == "CHECKBOX") {
-				if( ui.$el.is(":checked") ) {
-					ui.$el.prop("checked", false);
-					ui.wrap.removeClass(ui.wrapCheckboxCls + ui.checkedClsuffix);
-				} else {
-					ui.$el.prop("checked", true);
-					ui.wrap.addClass(ui.wrapCheckboxCls + ui.checkedClsuffix);
-				}
-			}
+                ui.$el.prop("checked", !ui.$el.is(':checked')).trigger('change');
+            }
             // ui.wrap toggle checked cls for radio
             if(ui.type == "RADIO") {
-                ui.$group.prop("checked", false);
-                ui.$el.prop("checked", true);
-                ui.$group.parent().removeClass(ui.wrapRadioCls + ui.checkedClsuffix);
-                ui.wrap.addClass(ui.wrapRadioCls + ui.checkedClsuffix);
+                ui.$group.prop("checked", false).trigger('change');
+                ui.$el.prop("checked", true).trigger('change');
             }
         }
 
