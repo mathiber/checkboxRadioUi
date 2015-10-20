@@ -138,15 +138,25 @@
                 _changeControl();
             });
             ui.$el.on('change', function(){
+                var disabledCls;
                 if (ui.type == 'CHECKBOX') {
                     if (ui.$el.is(':checked')) {
                         ui.wrap.addClass(ui.wrapCheckboxCls + ui.checkedClsuffix);
                     } else {
                         ui.wrap.removeClass(ui.wrapCheckboxCls + ui.checkedClsuffix);
                     }
-                } else if (ui.type == 'RADIO' && ui.$el.is(':checked')) {
-                    ui.$group.parent().removeClass(ui.wrapRadioCls + ui.checkedClsuffix);
-                    ui.wrap.addClass(ui.wrapRadioCls + ui.checkedClsuffix);
+                    disabledCls = ui.wrapCheckboxCls + ui.disabledClsuffix;
+                } else if (ui.type == 'RADIO') { 
+                    if (ui.$el.is(':checked')) {
+                        ui.$group.parent().removeClass(ui.wrapRadioCls + ui.checkedClsuffix);
+                        ui.wrap.addClass(ui.wrapRadioCls + ui.checkedClsuffix);
+                    }
+                    disabledCls = ui.wrapRadioCls + ui.disabledClsuffix;
+                }
+                if (ui.$el.is(':disabled')) {
+                    ui.wrap.addClass(disabledCls);
+                } else {
+                    ui.wrap.removeClass(disabledCls);
                 }
                 if (this === ui.el && ui.settings.onChange) {
                     ui.settings.onChange(ui.el);
@@ -162,6 +172,9 @@
         };
 
         function _changeControl() {
+            if (ui.$el.is(':disabled')) {
+                return;
+            }
             // ui.wrap toggle checked cls for checkbox
             if(ui.type == "CHECKBOX") {
                 ui.$el.prop("checked", !ui.$el.is(':checked')).trigger('change');
