@@ -120,11 +120,9 @@
             }
 
             // initialize events
-            if(!ui.$el.is(":disabled")) {
-                _eventClick();
-                if(ui.settings.label) {
-                    _eventClickLabel();
-                }
+            _eventClick();
+            if(ui.settings.label) {
+                _eventClickLabel();
             }
         };
 
