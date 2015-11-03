@@ -92,6 +92,9 @@
             ui.$el.wrap("<span style='display: inline-block; position: relative; overflow:hidden; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none;'>");
             // wrap element
             ui.wrap = ui.$el.parent();
+            if (ui.$el.attr('id')) {
+                ui.wrap.attr('id', ui.$el.attr('id')+'-wrap');
+            }
 
             ui.wrap.addClass(function() {
                 return (ui.type == "CHECKBOX") ? ui.wrapCheckboxCls : ui.wrapRadioCls;
