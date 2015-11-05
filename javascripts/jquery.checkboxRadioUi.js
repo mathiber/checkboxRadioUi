@@ -67,7 +67,7 @@
             ui.touch = ("ontouchstart" in document.documentElement) ? true : false;
             // determine event types
             ui.eventTypes = {
-                mousedown: (ui.touch) ? "touchstart" : "mousedown"
+                mousedown: "click" //(ui.touch) ? "touchstart" : "mousedown"
             };
             // determine radio or checkbox
             if(ui.el.tagName.toUpperCase() == "INPUT" ) {
